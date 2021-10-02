@@ -46,7 +46,7 @@ class GameMap:
                 return actor
 
         return None
-        
+
     def in_bounds(self, x: int, y: int) -> bool:
         """Return True if x and y are inside of the bounds of this map."""
         return 0 <= x < self.width and 0 <= y < self.height
@@ -64,8 +64,11 @@ class GameMap:
             choicelist=[self.tiles["light"], self.tiles["dark"]],
             default=tile_types.SHROUD
         )
+        entities_sorted_for_rendering = sorted(
+            self.entities, key=lambda x: x.render_order.value
+        )
 
-        for entity in self.entities:
+        for entity in entities_sorted_for_rendering:
             # Only print entities that are in the FOV
             if self.visible[entity.x, entity.y]:
                 console.print(entity.x, entity.y, entity.char, fg=entity.color)

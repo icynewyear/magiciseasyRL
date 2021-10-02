@@ -3,6 +3,7 @@
 import copy
 import tcod
 
+import color
 import entity_factories
 from engine import Engine
 from game_map import GameMap
@@ -15,7 +16,7 @@ def main() -> None:
     screen_height = 50
 
     map_width = 80
-    map_height = 45
+    map_height = 43
 
     room_max_size = 10
     room_min_size = 6
@@ -41,6 +42,10 @@ def main() -> None:
         ASSET_ROOT+"\dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
     )
     engine.update_fov()
+
+    engine.message_log.add_message(
+        "Welcome to RacoonKa", color.welcome_text
+    )
 
     with tcod.context.new_terminal(
         screen_width,
