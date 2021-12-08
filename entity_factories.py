@@ -5,7 +5,7 @@ from entity import Actor
 player = Actor(
     char="@",
     color=(255, 255, 255),
-    name="Player",
+    name="You",
     ai_cls=HostileEnemy,
     fighter=Fighter(hp=30, defense=2, power=5),
 )

@@ -7,7 +7,7 @@ from tcod.console import Console
 from tcod.map import compute_fov
 
 from input_handlers import MainGameEventHandler
-from render_functions import render_bar
+from render_functions import render_bar, task_menu
 from message_log import MessageLog
 
 if TYPE_CHECKING:
@@ -50,6 +50,10 @@ class Engine:
             current_value=self.player.fighter.hp,
             maximum_value=self.player.fighter.max_hp,
             total_width=20,
+        )
+
+        task_menu(
+            console=console
         )
 
         context.present(console)

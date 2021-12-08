@@ -39,6 +39,10 @@ MOVE_KEYS = {
     tcod.event.K_n: (1, 1),
 }
 
+PONDER_KEY = {
+    tcod.event.K_p,
+}
+
 WAIT_KEYS = {
     tcod.event.K_PERIOD,
     tcod.event.K_KP_5,
@@ -82,7 +86,8 @@ class MainGameEventHandler(EventHandler):
             action = BumpAction(player, dx, dy)
         elif key in WAIT_KEYS:
             action = WaitAction(player)
-
+        elif key in PONDER_KEY:
+            print("ponder")
         elif key == tcod.event.K_ESCAPE:
             action = EscapeAction(player)
 

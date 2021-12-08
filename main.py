@@ -44,17 +44,19 @@ def main() -> None:
     engine.update_fov()
 
     engine.message_log.add_message(
-        "Welcome to RacoonKa", color.welcome_text
+        "Magic is easy.", color.welcome_text
     )
-
+    engine.message_log.add_message(
+        "Howl at a god.", color.welcome_text
+    )
     with tcod.context.new_terminal(
-        screen_width,
+        screen_width+40,
         screen_height,
         tileset=tileset,
         title="RacoonKa",
         vsync=True,
     ) as context:
-        root_console = tcod.Console(screen_width, screen_height, order="F")
+        root_console = tcod.Console(screen_width+40, screen_height, order="F")
         while True:
 
             engine.render(console=root_console, context=context)
