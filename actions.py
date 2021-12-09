@@ -37,6 +37,10 @@ class WaitAction(Action):
     def perform(self) -> None:
         pass
 
+class PonderAction(Action):
+    def perform(self) -> None:
+        pass
+
 class ActionWithDirection(Action):
     def __init__(self, entity: Actor, dx: int, dy: int):
         super().__init__(entity)

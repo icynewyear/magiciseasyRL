@@ -8,7 +8,8 @@ import entity_factories
 from engine import Engine
 from game_map import GameMap
 from input_handlers import EventHandler
-from procgen import generate_dungeon
+#from procgen import generate_dungeon
+from mapgens.cavegen import generate_dungeon
 
 def main() -> None:
     ASSET_ROOT = "assets"
@@ -22,19 +23,19 @@ def main() -> None:
     room_min_size = 6
     max_rooms = 30
 
-    max_monsters_per_room = 2
+    max_monsters_per_room = 0
 
     player = copy.deepcopy(entity_factories.player)
 
     engine = Engine(player=player)
 
     engine.game_map = generate_dungeon(
-        max_rooms=max_rooms,
-        room_min_size=room_min_size,
-        room_max_size=room_max_size,
+        #max_rooms=max_rooms,
+        #room_min_size=room_min_size,
+        #room_max_size=room_max_size,
         map_width=map_width,
         map_height=map_height,
-        max_monsters_per_room=max_monsters_per_room,
+        #max_monsters_per_room=max_monsters_per_room,
         player=player,
         engine=engine
     )
@@ -53,7 +54,7 @@ def main() -> None:
         screen_width+40,
         screen_height,
         tileset=tileset,
-        title="RacoonKa",
+        title="Magic is Easy",
         vsync=True,
     ) as context:
         root_console = tcod.Console(screen_width+40, screen_height, order="F")
