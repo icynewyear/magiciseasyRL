@@ -37,7 +37,8 @@ def main() -> None:
         map_height=map_height,
         #max_monsters_per_room=max_monsters_per_room,
         player=player,
-        engine=engine
+        engine=engine,
+        num_runs=2
     )
     tileset = tcod.tileset.load_tilesheet(
         ASSET_ROOT+"\dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD

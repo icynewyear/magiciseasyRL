@@ -19,6 +19,7 @@ def generate_dungeon(
     map_height: int,
     engine: Engine,
     player: Entity,
+    num_runs: int = 9,
 ) -> GameMap:
     """Generate a new cave map."""
 
@@ -26,10 +27,10 @@ def generate_dungeon(
     
     wall_chance = .45
     mapcells = np.random.choice(a=[True, False], size=(map_width, map_height), p=[wall_chance, 1-wall_chance])  
-    for x in range(6):
+
+    for x in range(num_runs+1):
         mapcells = smooth_walls(mapcells)
  
-
     player = engine.player
     dungeon = GameMap(engine, map_width, map_height, entities=[player])
     player.place(*(1,1), dungeon)
