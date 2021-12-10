@@ -4,7 +4,7 @@ from typing import Optional, TYPE_CHECKING
 
 import tcod.event
 
-from actions import Action, BumpAction, EscapeAction
+from actions import Action, BumpAction, EscapeAction, SmoothAction
 
 if TYPE_CHECKING:
     from engine import Engine
@@ -43,6 +43,9 @@ PONDER_KEY = {
     tcod.event.K_p,
 }
 
+SMOOTH_KEY = {
+    tcod.event.K_o,
+}
 WAIT_KEYS = {
     tcod.event.K_PERIOD,
     tcod.event.K_KP_5,
@@ -88,6 +91,8 @@ class MainGameEventHandler(EventHandler):
             action = WaitAction(player)
         elif key in PONDER_KEY:
             print("ponder")
+        elif key in SMOOTH_KEY:
+            action = SmoothAction(player)
         elif key == tcod.event.K_ESCAPE:
             action = EscapeAction(player)
 

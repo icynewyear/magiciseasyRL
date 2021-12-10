@@ -41,6 +41,10 @@ class PonderAction(Action):
     def perform(self) -> None:
         pass
 
+class SmoothAction(Action):
+    def perform(self) -> None:
+        print(self.engine)
+
 class ActionWithDirection(Action):
     def __init__(self, entity: Actor, dx: int, dy: int):
         super().__init__(entity)
