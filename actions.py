@@ -39,7 +39,8 @@ class WaitAction(Action):
 
 class PonderAction(Action):
     def perform(self) -> None:
-        pass
+        self.engine.state = "PONDER"
+    #TODO: add ponder input
 
 class ActionWithDirection(Action):
     def __init__(self, entity: Actor, dx: int, dy: int):

@@ -7,7 +7,7 @@ from tcod.console import Console
 from tcod.map import compute_fov
 
 from input_handlers import MainGameEventHandler
-from render_functions import render_bar, task_menu
+from render_functions import render_bar, task_menu, ponder_menu
 from message_log import MessageLog
 
 if TYPE_CHECKING:
@@ -22,6 +22,7 @@ class Engine:
         self.event_handler: EventHandler = MainGameEventHandler(self)
         self.message_log = MessageLog()
         self.player = player
+        self.state = "LOOP"
 
     def handle_enemy_turns(self) -> None:
         for entity in set(self.game_map.actors) - {self.player}:
@@ -55,6 +56,8 @@ class Engine:
         task_menu(
             console=console
         )
+        if self.state == "PONDER":
+            ponder_menu(console=console)
 
         context.present(console)
 
