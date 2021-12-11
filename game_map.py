@@ -17,9 +17,9 @@ class GameMap:
         self.engine = engine
         self.width, self.height = width, height
         self.entities = set(entities)
-        self.tiles = np.full((width, height), fill_value=tile_types.wall, order="F")
+        self.tiles = np.full((width, height), fill_value=tile_types.floor, order="F")
         self.visible = np.full((width, height), fill_value=False, order="F")  # Tiles the player can currently see
-        self.explored = np.full((width, height), fill_value=False, order="F")  # Tiles the player has seen before
+        self.explored = np.full((width, height), fill_value=True, order="F")  # Tiles the player has seen before
 
     @property
     def actors(self) -> Iterator[Actor]:

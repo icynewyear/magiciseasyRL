@@ -4,7 +4,7 @@ from typing import Optional, TYPE_CHECKING
 
 import tcod.event
 
-from actions import Action, BumpAction, EscapeAction
+from actions import Action, BumpAction, EscapeAction, PonderAction, WaitAction
 
 if TYPE_CHECKING:
     from engine import Engine
@@ -37,6 +37,10 @@ MOVE_KEYS = {
     tcod.event.K_u: (1, -1),
     tcod.event.K_b: (-1, 1),
     tcod.event.K_n: (1, 1),
+}
+
+PONDER_KEY = {
+    tcod.event.K_p,
 }
 
 WAIT_KEYS = {
@@ -82,10 +86,10 @@ class MainGameEventHandler(EventHandler):
             action = BumpAction(player, dx, dy)
         elif key in WAIT_KEYS:
             action = WaitAction(player)
-
+        elif key in PONDER_KEY:
+            action = PonderAction(player)
         elif key == tcod.event.K_ESCAPE:
             action = EscapeAction(player)
-
         # No valid key was pressed
         return action
         

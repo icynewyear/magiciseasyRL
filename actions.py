@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Optional, Tuple, TYPE_CHECKING
 
 import color
+from game_state import GameState
 
 if TYPE_CHECKING:
     from engine import Engine
@@ -36,6 +37,11 @@ class EscapeAction(Action):
 class WaitAction(Action):
     def perform(self) -> None:
         pass
+
+class PonderAction(Action):
+    def perform(self) -> None:
+        self.engine.state = GameState.PONDER
+    #TODO: add ponder input
 
 class ActionWithDirection(Action):
     def __init__(self, entity: Actor, dx: int, dy: int):
