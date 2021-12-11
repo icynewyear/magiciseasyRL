@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Optional, Tuple, TYPE_CHECKING
 
 import color
+from game_state import GameState
 
 if TYPE_CHECKING:
     from engine import Engine
@@ -39,7 +40,7 @@ class WaitAction(Action):
 
 class PonderAction(Action):
     def perform(self) -> None:
-        self.engine.state = "PONDER"
+        self.engine.state = GameState.PONDER
     #TODO: add ponder input
 
 class ActionWithDirection(Action):
