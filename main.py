@@ -38,7 +38,8 @@ def main() -> None:
         #max_monsters_per_room=max_monsters_per_room,
         player=player,
         engine=engine,
-        num_runs=2
+        num_runs=2,
+        seed=12
     )
     tileset = tcod.tileset.load_tilesheet(
         ASSET_ROOT+"\dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD

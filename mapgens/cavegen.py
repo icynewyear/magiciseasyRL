@@ -20,12 +20,13 @@ def generate_dungeon(
     engine: Engine,
     player: Entity,
     num_runs: int = 9,
+    seed: int = 0,
 ) -> GameMap:
     """Generate a new cave map."""
 
-    #mapcells = np.full((map_width, map_height), True, dtype=bool)
-    
     wall_chance = .45
+    if seed != 0:   
+        np.random.seed(seed)
     mapcells = np.random.choice(a=[True, False], size=(map_width, map_height), p=[wall_chance, 1-wall_chance])  
 
     for x in range(num_runs+1):
