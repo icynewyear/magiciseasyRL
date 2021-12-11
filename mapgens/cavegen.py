@@ -21,6 +21,7 @@ def generate_dungeon(
     player: Entity,
     num_runs: int = 9,
     seed: int = 0,
+    enclose=True,
 ) -> GameMap:
     """Generate a new cave map."""
 
@@ -30,7 +31,7 @@ def generate_dungeon(
     mapcells = np.random.choice(a=[True, False], size=(map_width, map_height), p=[wall_chance, 1-wall_chance])  
 
     for x in range(num_runs+1):
-        mapcells = smooth_walls(mapcells)
+        mapcells = smooth_walls(mapcells, enclose=enclose)
  
     player = engine.player
     dungeon = GameMap(engine, map_width, map_height, entities=[player])
@@ -39,7 +40,7 @@ def generate_dungeon(
     dungeon.tiles[mapcells] = tile_types.wall
     return dungeon
 
-def smooth_walls(cells):
+def smooth_walls(cells, enclose):
     max_neighbors = 3
     min_neighbors = 2
     rebirth_neighbors = 3
@@ -75,7 +76,7 @@ def smooth_walls(cells):
         elif not cells[ix,iy] and count == 3:
             new_cells[ix,iy] = True
         #hard contain map edges
-        if ix == 0 or iy == 0 or ix == max_x or iy == max_y:
+        if enclose and (ix == 0 or iy == 0 or ix == max_x or iy == max_y):
             new_cells[ix,iy] = True
     return new_cells
     
