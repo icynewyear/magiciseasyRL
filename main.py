@@ -13,7 +13,7 @@ from mapgens.cavegen import generate_dungeon
 
 def main() -> None:
     ASSET_ROOT = "assets"
-    screen_width = 80
+    screen_width = 120
     screen_height = 50
 
     map_width = 80
@@ -54,13 +54,13 @@ def main() -> None:
         "Howl at a god.", color.welcome_text
     )
     with tcod.context.new_terminal(
-        screen_width+40,
+        screen_width,
         screen_height,
         tileset=tileset,
         title="Magic is Easy",
         vsync=True,
     ) as context:
-        root_console = tcod.Console(screen_width+40, screen_height, order="F")
+        root_console = tcod.Console(screen_width, screen_height, order="F")
         while True:
 
             engine.render(console=root_console, context=context)
