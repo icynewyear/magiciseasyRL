@@ -41,6 +41,8 @@ class WaitAction(Action):
 class PonderAction(Action):
     def perform(self) -> None:
         self.engine.state = GameState.PONDER
+    def add_ponder(self, entity: Actor, ponder):
+        pass
     #TODO: add ponder input
 
 class ActionWithDirection(Action):

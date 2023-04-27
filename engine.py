@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import tcod
 from tcod.context import Context
 from tcod.console import Console
 from tcod.map import compute_fov
@@ -35,7 +36,7 @@ class Engine:
         self.game_map.visible[:] = compute_fov(
             self.game_map.tiles["transparent"],
             (self.player.x, self.player.y),
-            radius=8,
+            radius=5,
         )
         # If a tile is "visible" it should be added to "explored".
         self.game_map.explored |= self.game_map.visible
@@ -58,8 +59,23 @@ class Engine:
             console=console
         )
         if self.state == GameState.PONDER:
-            ponder_menu(console=console)
-
+            input = ""
+            ponder_menu(console=console, input=input)
+            while self.state == GameState.PONDER:
+                context.present(console)
+                console.clear()
+                key = tcod.console_wait_for_keypress(True)
+                if key.vk == tcod.KEY_ENTER or key.vk == tcod.KEY_KPENTER:
+                    ponder_menu(console=console, input=input)
+                    context.present(console)
+                    console.clear()
+                    self.state = GameState.LOOP
+                elif key.vk == tcod.KEY_BACKSPACE:
+                    input = input[:-1]
+                elif key.c:
+                    input += chr(key.c)
+                ponder_menu(console=console, input=input) 
+            
         context.present(console)
 
         console.clear()

@@ -5,6 +5,7 @@ from typing import Optional, TYPE_CHECKING
 import tcod.event
 
 from actions import Action, BumpAction, EscapeAction, PonderAction, WaitAction
+from render_functions import option_menu
 
 if TYPE_CHECKING:
     from engine import Engine
@@ -89,7 +90,7 @@ class MainGameEventHandler(EventHandler):
         elif key in PONDER_KEY:
             action = PonderAction(player)
         elif key == tcod.event.K_ESCAPE:
-            action = EscapeAction(player)
+            action = EscapeAction(player)  
         # No valid key was pressed
         return action
         
